@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+:root {
+  --bg-app: #f5f9f6;
+  --bg-card: #ffffff;
+  --border-color: #e2ece6;
+  --text-main: #1f2937;
+  --text-muted: #4b5563;
+  --brand-green-soft: #eaf8f0;
+  --brand-orange-soft: #fff7ed;
+  --accent-shadow: 0 4px 20px -2px rgba(59, 177, 111, 0.08);
+}
+
+:root.dark {
+  --bg-app: #090e0b;
+  --bg-card: #111a15;
+  --border-color: #203027;
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --brand-green-soft: #142e20;
+  --brand-orange-soft: #2d1d14;
+  --accent-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+@theme {
+  --color-bg-app: var(--bg-app);
+  --color-bg-card: var(--bg-card);
+  --color-border-color: var(--border-color);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  
+  --color-brand-green-soft: var(--brand-green-soft);
+  --color-brand-orange-soft: var(--brand-orange-soft);
+  
+  --color-brand-green: #3bb16f;
+  --color-brand-green-hover: #2e965c;
+  --color-brand-orange: #ff7f32;
+  --color-brand-orange-hover: #e5661b;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  min-height: 100vh;
+}
+
+/* Custom shadow utilities */
+.shadow-premium {
+  box-shadow: var(--accent-shadow);
+}
+
+/* Cooking Pot Loader Animations */
+@keyframes steam {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scaleX(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-40px) scaleX(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes bubble {
+  0% {
+    transform: translateY(10px) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-15px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes lid-rattle {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(-1.5deg) translateY(-1px);
+  }
+  75% {
+    transform: rotate(1.5deg) translateY(-0.5px);
+  }
+}
+
+.animate-steam-1 {
+  animation: steam 2s infinite ease-out;
+}
+
+.animate-steam-2 {
+  animation: steam 2.5s infinite ease-out 0.5s;
+}
+
+.animate-steam-3 {
+  animation: steam 1.8s infinite ease-out 1.2s;
+}
+
+.animate-bubble-1 {
+  animation: bubble 1.5s infinite ease-in-out;
+}
+
+.animate-bubble-2 {
+  animation: bubble 1.8s infinite ease-in-out 0.4s;
+}
+
+.animate-bubble-3 {
+  animation: bubble 1.2s infinite ease-in-out 0.8s;
+}
+
+.animate-lid {
+  animation: lid-rattle 0.3s infinite ease-in-out;
+  transform-origin: center bottom;
+}
+
+/* Print Layout Optimization */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt;
+  }
+  
+  /* Hide non-printable UI elements */
+  .no-print,
+  button,
+  header,
+  footer,
+  nav,
+  form,
+  .print-toggle {
+    display: none !important;
+  }
+  
+  /* Main content should take up full width */
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+  }
+
+  /* Reset layout grids for paper sizes */
+  .print-grid {
+    display: block !important;
+  }
+
+  .print-card {
+    border: 1px solid #ccc !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin-bottom: 20px !important;
+    page-break-inside: avoid !important;
+    box-shadow: none !important;
+    padding: 15px !important;
+  }
+  
+  /* Timeline specific print layout */
+  .timeline-line {
+    border-left: 2px solid #ccc !important;
+  }
+  
+  .timeline-dot {
+    background-color: #000000 !important;
+    border: 2px solid #000000 !important;
+  }
+
+  /* Text formatting in print */
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+  }
+  
+  span, p, li {
+    color: #000000 !important;
+  }
+
+  /* Checkboxes in print */
+  input[type="checkbox"] {
+    border: 1px solid #000000 !important;
+    background-color: #ffffff !important;
+    print-color-adjust: exact;
+  }
+}
